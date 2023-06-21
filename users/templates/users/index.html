@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Landing Page </h1>
+    <h3>Getting started</h3>
+    <p>Have an account?</p>
+    {% comment %} <a href="{% url 'student-login' %}">Login as Student</a><br> {% endcomment %}
+    <h2><a href="{% url 'login' %}">Login </a></h2>
+  
+    <p>Not yet registered!</p>
+    <a href="{% url 'accountant-signup' %}">Signup as Accountant / Procurement officer </a><br>
+    <a href="{% url 'minister-signup' %}">Signup as Minister / Architect / Admin</a>
+    
+</body>
+</html>
