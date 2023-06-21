@@ -1,2 +1,2 @@
 # VihigaCountyConstructionProjectInformationSystem
-County Information system
+County Information Management System on projects
