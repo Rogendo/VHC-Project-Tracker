@@ -33,6 +33,12 @@
 {% endif %}
 
 <div id="content-main">
+  {% comment %} <div class="content-main" style="backgrounf-color:green;" >
+    <style>
+      .content-main{
+        background-color:lightgrey;
+      }
+    </style> {% endcomment %}
 
 {% if user.is_authenticated %}
 <p class="errornote">
@@ -42,6 +48,8 @@
 {% endblocktranslate %}
 </p>
 {% endif %}
+
+
 
 <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-row">
@@ -53,12 +61,13 @@
     {{ form.password.label_tag }} {{ form.password }}
     <input type="hidden" name="next" value="{{ next }}">
   </div>
-  {% url 'admin_password_reset' as password_reset_url %}
-  {% if password_reset_url %}
+  
+  {% comment %} {% url 'admin_password_reset' as password_reset_url %}
+  {% if password_reset_url %} {% endcomment %}
   <div class="password-reset-link">
-    <a href="{{ password_reset_url }}">{% translate 'Forgotten your password or username?' %}</a>
+    <a href="{{ admin_password_reset }}">Forgotten your password or username?</a>
   </div>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
   <div class="submit-row">
     <input type="submit" value="{% translate 'Log in' %}">
   </div>
