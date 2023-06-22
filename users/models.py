@@ -48,6 +48,11 @@ class Procurement_Department(models.Model):
     def __str__(self):
         return self.department_name
     
+    class Meta:
+        db_table = 'Tables'
+        # change model name in admin
+        verbose_name = "Procurement Department"
+    
 # class ContractImplementationTeam():
     # name=
     # ID_no=
@@ -79,7 +84,6 @@ class Project(models.Model):
     tender_no = models.CharField(max_length=20, unique=True)
     company_name = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name='contracting_company')
     # main_contractor = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name='contractor_name')
-    contract_period_months = models.PositiveIntegerField()
     procurrement_department = models.ForeignKey(Procurement_Department, on_delete=models.CASCADE,related_name='procurement')
     site_location = models.CharField(max_length=80)
     floor_area = models.CharField(max_length=20)

@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path,include,re_path
 from django.views.generic import TemplateView
 
-# custom_admin_site = admin.AdminSite(name="custom_admin")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('admin/',custom_admin_site.urls),
     path("user/", include("users.urls")),
     path("",TemplateView.as_view(template_name="users/index.html")),
+
 ]
