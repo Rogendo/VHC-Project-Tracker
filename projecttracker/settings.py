@@ -68,7 +68,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Task Manager Admin Panel",
+    "welcome_sign": "Welcome to Vihiga County Information Management Admin Panel",
 
     # Copyright on the footer
     "copyright": "Rogendo",
