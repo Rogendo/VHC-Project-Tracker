@@ -69,6 +69,8 @@ pip install  -r requirements.txt
 
 python manage.py runserver
 
+```
+
 <h3> List of features </h3>
 
 <ul>
