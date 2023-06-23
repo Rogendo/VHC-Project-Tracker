@@ -8,7 +8,7 @@
 
 <hr/>
 
-<This is an Information Management System that jelps in organising and planning construction projects in a county. It tracks construction projects' tenders, contractors and project progress.</p>
+<p>This is an Information Management System that jelps in organising and planning construction projects in a county. It tracks construction projects' tenders, contractors and project progress.</p>
 
 # How to run it?
 
