@@ -34,10 +34,11 @@ class Minister(models.Model):
 # CREATING THE DATA TABLES
 class Contractor(models.Model):
     company_name = models.CharField(max_length=100)
-    ID_no = models.CharField(max_length=12)
-    # ID_no = models.CharField(max_length=12,unique=True
-    main_contractor = models.CharField(max_length=100)
-    
+    company_ID_no = models.CharField(max_length=12)
+    company_email  = models.EmailField(null=True)
+    chief_contractor = models.CharField(max_length=100,unique=True)
+    chief_contractor_phone_no = models.CharField(max_length=12)
+    contracting_team_member_1 = models.CharField(max_length=100)
     def __str__(self):
         return self.company_name
  
@@ -53,19 +54,7 @@ class Procurement_Department(models.Model):
         # change model name in admin
         verbose_name = "Procurement Department"
     
-# class ContractImplementationTeam():
-    # name=
-    # ID_no=
-    # phone_no=
-    
-# Tenders Table
-# class Tenders(models.Model):
-#     tender_ID = models.CharField(primary_key=True,unique=True,max_length=30)
-#     tender_name = models.CharField(unique=True,max_length=60)
-#     created_on = models.DateTimeField()
-#     project_name = models.CharField(max_length=100)
-    
-    
+  
 PAYMENT_STATUS=(
         (0,"Paid"),
         (1,"Pending")
@@ -91,6 +80,8 @@ class Project(models.Model):
     payments_made = models.CharField(max_length=20)    
     payment_status = models.BooleanField(choices=PAYMENT_STATUS, default=1)
     work_status = models.BooleanField(choices=WORK_STATUS,default=0)
+    completed = models.BooleanField(default=False)
+
     updated_on = models.DateTimeField(auto_now_add=True)
     date = models.DateField()
     contract_period_months = models.PositiveIntegerField()
@@ -114,7 +105,7 @@ class Checklist(models.Model):
     checklist_name = models.CharField(max_length=80)
     project_name = models.ForeignKey(Project,on_delete=models.CASCADE,related_name="project")
     procurrement_department = models.ForeignKey(Procurement_Department,on_delete=models.CASCADE,related_name="procuring_dpt")
-    main_contractor = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name="contractor")
+    main_contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE,related_name="contractor")
     checklist_document = models.FileField(upload_to='Checklist_Documents/')
     contract_period_months = models.PositiveIntegerField()
     date = models.DateField()
@@ -133,6 +124,16 @@ class Checklist(models.Model):
     def __str__(self):
         return self.checklist_name
    
+class ProjectProgress(models.Model):
+    project_name = models.ForeignKey(Project,on_delete=models.CASCADE,related_name='projectname')
+    company_name = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name='companyname')
+    # chief_contractor = models.ForeignKey(Contractor,to_field="chief_contractor",on_delete=models.CASCADE)
+    description = models.CharField(max_length=600)
+    images = models.ImageField(upload_to='Progress_Images/')
+    updated_at = models.DateTimeField()
+    def __str__(self):
+        return f"Progress for {self.project_name}"
     
+
 
   

@@ -1,0 +1,27 @@
+{% extends 'users/base.html' %}
+{% block title %} {{ project.project_name }} {% endblock title %} 
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-3">
+        <h2 class="text-2xl">{{ project.project_name}} </h2>
+        <p class="text-2xl">Project Location: {{ project.project_location}} </p>
+        <p class="text-2xl">company_name : {{ project.company_name}} </p>
+        <p class="text-2xl">commencement_date : {{ project.commencement_date}} </p>
+        <p class="text-2xl">sqm_rate_or_lm: {{ project.sqm_rate_or_lm}} </p>
+        <p class="text-2xl">procurrement_department: {{ project.procurrement_department}} </p>
+        <p class="text-2xl">tender_no: {{ project.tender_no}} </p>
+        <p class="text-2xl">site_location: {{ project.site_location}} </p>
+
+        <p class="text-2xl">floor_area: {{ project.floor_area}} </p>
+        <p class="text-2xl">contract_sum: {{ project.contract_sum}} </p>
+
+        <p class="text-2xl">work_status: {{ project.work_status}} </p>
+        <p class="text-2xl">completed: {{ project.completed}} </p>
+        {% comment %} {% if completed==False %}<p>Not Yet</p>{% endif %}  {% endcomment %}
+        <p class="text-2xl">contract_period_months: {{ project.contract_period_months}} </p>
+</p>
+
+</div>
+
+{% endblock content %}
