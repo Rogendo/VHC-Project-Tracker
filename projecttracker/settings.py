@@ -68,7 +68,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Vihiga County Information Management Admin Panel",
+    "welcome_sign": "Welcome to Task Manager Admin Panel",
 
     # Copyright on the footer
     "copyright": "Rogendo",
@@ -265,7 +265,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = 'static/'
-
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
