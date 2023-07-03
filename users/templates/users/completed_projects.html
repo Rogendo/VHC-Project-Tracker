@@ -1,9 +1,7 @@
 {% extends 'users/base.html'%}
 {% block title %} Vihiga County {% endblock title %}
 {% block content %}
-    {% comment %} <h1>Landing Page </h1>
-    <h3>Getting started</h3>
-    <p>Have an account?</p> {% endcomment %}
+    
 <div class = "mt-6 px-6 py-12 bg-gray-100 rounded-xl">
     <h2 class="mb-12 text-2xl text-center font-bold">Completed Projects</h2>
     <div class="grid grid-cols-3 gap-3">
@@ -11,8 +9,8 @@
            
             <div class="p-6 bg-white rounded-b-xl">
                 {% if project.completed == True %}
-                <a href="#">
-                <h2 class="text-2xl text-blue-500 font-bold">{{ project.project_name}} </h2>
+                <a href=" {% url 'detail' project.id%}">
+                    <h2 class="text-2xl text-blue-500 font-bold">{{ project.project_name}} </h2>
 
                 </a>
                 <div>
@@ -32,10 +30,4 @@
     </div>
 </div>
 
-    {% comment %} <a href="{% url 'student-login' %}">Login as Student</a><br> {% endcomment %}
-    {% comment %} <h2><a href="{% url 'login' %}">Login </a></h2>
-  
-    <p>Not yet registered!</p>
-    <a href="{% url 'accountant-signup' %}">Signup as Accountant / Procurement officer </a><br>
-    <a href="{% url 'minister-signup' %}">Signup as Minister / Architect / Admin</a> {% endcomment %}
-    {% endblock content %}
+       {% endblock content %}

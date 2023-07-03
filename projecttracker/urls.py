@@ -16,16 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include,re_path
 from django.views.generic import TemplateView
-
-
-
+from users.admin import  *
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path("", include("users.urls")),
+    path("minister/",minister_admin_site.urls ),
+    path("accountant/",accountant_admin_site.urls)
     # path("",TemplateView.as_view(template_name="users/index.html")),
 
 ]
 # urlpatterns +=[re_path(r'^.*',TemplateView.as_view(template_name="users/index.html"))]
 
-# urlpatterns += [re_path(r'^.*', TemplateView.as_view(template_name='index.html'))]

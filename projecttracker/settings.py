@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'djoser',
+    # 'schedule', #calendar settings
+
 ]
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -68,7 +70,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Task Manager Admin Panel",
+    "welcome_sign": "Welcome to Vihiga Project Manager Admin Panel",
 
     # Copyright on the footer
     "copyright": "Rogendo",
@@ -225,7 +227,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-AUTH_USER_MODEL= 'users.User'
+# AUTH_USER_MODEL= 'users.User'
 LOGIN_REDIRECT_URL= 'home'
 LOGIN_URL='login'
 
@@ -253,7 +255,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Africa/Nairobi'
 
 USE_I18N = True
 
