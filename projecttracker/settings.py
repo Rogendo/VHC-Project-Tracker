@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
+    'tracker',
     'djoser',
     # 'schedule', #calendar settings
 
@@ -70,8 +70,7 @@ JAZZMIN_SETTINGS = {
     "site_icon": None,
 
     # Welcome text on the login screen
-
-    "welcome_sign": "Welcome to Vihiga County Project Manager Admin Panel",
+    "welcome_sign": "Welcome to Vihiga Project Manager Admin Panel",
 
     # Copyright on the footer
     "copyright": "Rogendo",
@@ -94,13 +93,13 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/Rogendo/VihigaCountyConstructionProjectInformationSystem/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/Rogendo", "new_window": True},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
 
         # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "users"},
+        {"app": "tracker"},
     ],
 
     #############
@@ -109,7 +108,7 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/Rogendo/VihigaCountyConstructionProjectInformationSystem/issues", "new_window": True},
+        {"name": "Support", "url": "https://github.com/Rogendo", "new_window": True},
         {"model": "auth.user"}
     ],
 
@@ -146,9 +145,9 @@ JAZZMIN_SETTINGS = {
     # Custom icons for side menu apps/models See https://fontawesome.com/icons?d=gallery&m=free&v=5.0.0,5.0.1,5.0.10,5.0.11,5.0.12,5.0.13,5.0.2,5.0.3,5.0.4,5.0.5,5.0.6,5.0.7,5.0.8,5.0.9,5.1.0,5.1.1,5.2.0,5.3.0,5.3.1,5.4.0,5.4.1,5.4.2,5.13.0,5.12.0,5.11.2,5.11.1,5.10.0,5.9.0,5.8.2,5.8.1,5.7.2,5.7.1,5.7.0,5.6.3,5.5.0,5.4.2
     # for the full list of 5.13.0 free icon classes
     "icons": {
-        "auth": "fas fa-users-cog",
+        "auth": "fas fa-tracker-cog",
         "auth.user": "fas fa-user",
-        "auth.Group": "fas fa-users",
+        "auth.Group": "fas fa-tracker",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
@@ -228,7 +227,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# AUTH_USER_MODEL= 'users.User'
+# AUTH_USER_MODEL= 'tracker.User'
 LOGIN_REDIRECT_URL= 'home'
 LOGIN_URL='login'
 
