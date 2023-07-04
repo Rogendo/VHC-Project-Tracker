@@ -1,0 +1,31 @@
+{% extends 'tracker/base.html' %}
+{% block title %} {{ project.project_name }} {% endblock title %} 
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6">
+    <div class="col-span-3">
+        <h2 class="text-1xl">{{ project.project_name}} </h2>
+        <p class="text-1xl">Project Location: {{ project.project_location}} </p>
+        <p class="text-1xl">Contracting Company Name : {{ project.company_name}} </p>
+        <p class="text-1xl">Commencement Date : {{ project.commencement_date}} </p>
+        <p class="text-1xl">Sqm rate or lm: {{ project.sqm_rate_or_lm}} </p>
+        <p class="text-1xl">Procurrement Department: {{ project.procurrement_department}} </p>
+        <p class="text-1xl">Tender: {{ project.tender_no}} </p>
+        <p class="text-1xl">Site Location: {{ project.site_location}} </p>
+        <p class="text-1xl">Floor Area: {{ project.floor_area}} </p>
+        <p class="text-1xl">Contract Sum: {{ project.contract_sum}} </p>
+        <p class="text-1xl">Contract Period (months): {{ project.contract_period_months}} </p>
+
+        <p class="text-2xl"> PROJECT PROGRESS </p>
+        <p class="text-1xl">Work Status: {{ project.work_status}} </p>
+        <p class="text-1xl">Completed: {{ project.completed}} </p>
+        <div>
+            <img src="{{ projectprogress.images.url}}" class="squared-t-xl">
+        </div>
+        <p class="text-1xl">Description : {{ projectprogress.description}} </p>
+   
+    </div>
+
+</div>
+
+{% endblock content %}
