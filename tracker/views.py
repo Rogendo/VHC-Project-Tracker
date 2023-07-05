@@ -35,8 +35,8 @@ def home(request):
                   'contractor':contractor,
                   'projects':projects,})
     
-def contact(request):
-    return render(request, 'tracker/contact.html')
+# def contact(request):
+#     return render(request, 'tracker/contact.html')
     
 def privacy_policy(request):
     return render(request,'tracker/privacy_policy.html')
@@ -44,8 +44,8 @@ def privacy_policy(request):
 def terms_and_conditions(request):
     return render(request,'tracker/terms_conditions.html')
 
-def about(request):
-    return render(request,'tracker/about.html')
+# def about(request):
+#     return render(request,'tracker/about.html')
 
 # def staff_registration(request):
 #     if request.method == 'POST':
