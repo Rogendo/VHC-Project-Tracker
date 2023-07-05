@@ -39,9 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tracker',
-    'djoser',
-    # 'schedule', #calendar settings
-
 ]
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
@@ -54,26 +51,27 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Admin Dashboard",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    # "site_logo": "jazzmin/img/default-log.svg",
-    # "site_logo": "assets/images/favicon.png",
+    "site_logo": "jazzmin/img/default-log0.svg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    # "login_logo": "jazzmin/img/default.jpg",
+    "login_logo": "jazzmin/img/icon.svg",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
 
     # CSS classes that are applied to the logo above
-    "site_logo_classes": "img-circle",
+    "site_logo_classes": "img-square",
+    # "site_logo_classes": None,
+
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": None,
+    "site_icon": "jazzmin/img/default-log.svg",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to Vihiga Project Manager Admin Panel",
 
     # Copyright on the footer
-    "copyright": "Rogendo",
+    "copyright": "Vihiga County",
 
     # List of model admins to search from the search bar, search bar omitted if excluded
     # If you want to use a single search field you dont need to use a list, you can use a simple string 
@@ -93,7 +91,7 @@ JAZZMIN_SETTINGS = {
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
 
         # external url that opens in a new window (Permissions can be added)
-        {"name": "Support", "url": "https://github.com/Rogendo", "new_window": True},
+        {"name": "Support", "url": "#", "new_window": True},
 
         # model admin to link to (Permissions checked against model)
         {"model": "auth.User"},
@@ -108,7 +106,7 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "https://github.com/Rogendo", "new_window": True},
+        {"name": "Support", "url": "#", "new_window": True},
         {"model": "auth.user"}
     ],
 
@@ -214,6 +212,8 @@ TEMPLATES = [
         },
     },
 ]
+SESSION_COOKIE_AGE = 180 # 3 minutes
+SESSION_SAVE_EVERY_REQUEST = True
 
 WSGI_APPLICATION = 'projecttracker.wsgi.application'
 

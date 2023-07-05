@@ -31,7 +31,7 @@ from django.utils.html import format_html
 # # CREATING THE DATA TABLES
 class Contractor(models.Model):
     company_name = models.CharField(max_length=100,unique=True)
-    company_ID_no = models.CharField(max_length=12,unique=True)
+    # company_ID_no = models.CharField(max_length=12,unique=True)
     company_email  = models.EmailField(null=True,unique=True)
     chief_contractor = models.CharField(max_length=100,unique=True)
     chief_contractor_phone_no = models.CharField(max_length=12,unique=True)
@@ -67,9 +67,7 @@ class Project(models.Model):
     project_location = models.CharField(max_length=100)
     sqm_rate_or_lm = models.CharField(max_length=50)
     commencement_date = models.DateTimeField()
-    tender_no = models.CharField(max_length=20, unique=True)
     company_name = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name='contracting_company')
-    # main_contractor = models.ForeignKey(Contractor,on_delete=models.CASCADE,related_name='contractor_name')
     procurrement_department = models.ForeignKey(Procurement_Department, on_delete=models.CASCADE,related_name='procurement')
     site_location = models.CharField(max_length=80)
     floor_area = models.CharField(max_length=20)
@@ -78,12 +76,10 @@ class Project(models.Model):
     payment_status = models.BooleanField(choices=PAYMENT_STATUS, default=1)
     work_status = models.BooleanField(choices=WORK_STATUS,default=0)
     completed = models.BooleanField(default=False)
-
     updated_on = models.DateTimeField(auto_now_add=True)
     date = models.DateField()
     contract_period_months = models.PositiveIntegerField()
-
-    
+   
     def save(self, *args, **kwargs):
         if self.pk is None:
             current_date=timezone.now().date()
@@ -96,15 +92,12 @@ class Project(models.Model):
     def __str__(self):
         return self.project_name
    
-
 class Checklist(models.Model):
-    # checklist_id = models.CharField(unique=True,max_lenth=50)
     checklist_name = models.CharField(max_length=80,unique=True)
     project_name = models.ForeignKey(Project,on_delete=models.CASCADE,related_name="project")
     procurrement_department = models.ForeignKey(Procurement_Department,on_delete=models.CASCADE,related_name="procuring_dpt")
     main_contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE,related_name="contractor")
     checklist_document = models.FileField(upload_to='Checklist_Documents/')
-    # checklist_document_submitted = models.BooleanField()
     contract_period_months = models.PositiveIntegerField()
     date = models.DateField()
 
@@ -113,7 +106,6 @@ class Checklist(models.Model):
         return format_html('<a href="{}" target="_blank">View Checklist PDF</a>',self.checklist_document.url)
     
 
-# CHECKLIST DOCEMTENT SUBMITED? TRUE OR FALSE
     
     def save(self, *args, **kwargs):
         if self.pk is None:
