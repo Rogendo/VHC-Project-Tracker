@@ -1,14 +1,17 @@
-{% extends 'tracker/base.html' %}
-
-{% block title %}Admin Registration {% endblock title %}
+{% extends 'tracker/base.html'%}
+{% block title %} Admin Registration {% endblock title %}
 {% block content %}
+<body> 
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type='submit' value='Create Account'/>
+        
 
-<h2>Staff Registration</h2>
-<form method='POST'>
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type='submit'>Register</button>
-</form>
+
+    </form>
+
+</body>
+{% endblock %}
 
 
-{% endblock %} 

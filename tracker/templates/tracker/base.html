@@ -13,9 +13,8 @@
         <div class="flex space-x-6 mt-4 sm:mt-0">
             <a href="{% url 'home' %}" class="text-lg font-semibold hover:text-gray-500">New Projects</a>
             <a href="{% url 'completed' %}" class="text-lg font-semibold hover:text-gray-500">Completed Projects</a>
-            <a href="#" class="text-lg font-semibold hover:text-gray-500">View Contractors</a>
-            <a href="#" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
-            <a href="#" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log In</a>
+            <a href="{% url 'create_account' %}" class="px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Sign Up</a>
+            <a href="{% url 'login' %}" class="px-6 py-3 text-lg font-semibold bg-gray-500 text-white rounded-xl hover:bg-gray-700">Log In</a>
         </div>
     </nav>
     
@@ -28,9 +27,20 @@
     <footer class="py-6 px-6 flex justify-between bg-gray-800">
         <div class="w-2/3 pr-10">
             <h3 class="mb-5 font-semibold text-gray-400">About</h3>
-            <p class="text-lg text-gray-500">lorem ispium loreim isoihef lorein doris doresdf fwef ispium bla bla bla bla </p>
+            <h4><p class="text-lg text-gray-500">Vihiga Project Tracker is an Information Management System designed for Vihiga County, located in the Western parts of
+                Kenya. It keeps records of the diverse construction and development projects within the county. This system significantly reduce workloads and streamlines paperwork, ensuring
+                enhanced efficiency. Moreover, it revolutionalizes project tender allocation by fostering transparency. Project progress, more information on the projects and
+                the funds allocated will be readily accessible to the general public, promoting integrity,equity, accountability,transparency and inclusivity </p></h4>
         </div>
-     
+        <div class="">
+            <ul>
+                <li>Toll Free Line: 0800720378</li>
+                <li>Address: P.O.Box 344 – 50300</li>
+                <li>Email: communications@vihiga.go.ke</li>
+                <li>Email: info@vihiga.go.ke</li>
+                <li>Location: Mbale Town, Vihiga County- Kenya</li>
+            </div>
+
         <h3 class="mb-5 font-semibold text-gray-400">Menu</h3>
         
 
@@ -38,6 +48,10 @@
             <li><a href="{% url 'terms' %}" class ="text-lg text-teal-500 hover:text-teal-700">Terms of use</a></li>
 
 
+        </div>
+
+        <div>
+            Vihiga County. All rights reserved © 2023.
         </div>
     </footer>
 </body>

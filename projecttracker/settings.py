@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)1z8c-90uqp4%peeftnm_*le0)(5k5d)@r8rz5fa6c^n&s)iv*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tracker',
 ]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 JAZZMIN_SETTINGS = {
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "Vihiga County Project Tracker",
@@ -51,10 +55,10 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Admin Dashboard",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "jazzmin/img/default-log0.svg",
+    "site_logo": "jazzmin/img/default-log.svg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "jazzmin/img/icon.svg",
+    "login_logo": "jazzmin/img/default.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
@@ -106,8 +110,9 @@ JAZZMIN_SETTINGS = {
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
-        {"name": "Support", "url": "#", "new_window": True},
-        {"model": "auth.user"}
+        {"name": "Support", "url": "#", "new_window": True,'icon':"fas fa-handshake"},
+        {"model": "auth.user"},
+        {"name": "Website","url":"","new_window":True,'icon':"fas fa-globe"},
     ],
 
     #############
@@ -145,7 +150,7 @@ JAZZMIN_SETTINGS = {
     "icons": {
         "auth": "fas fa-tracker-cog",
         "auth.user": "fas fa-user",
-        "auth.Group": "fas fa-tracker",
+        "auth.Group": "fas fa-users",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
@@ -166,7 +171,7 @@ JAZZMIN_SETTINGS = {
     # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
-    "show_ui_builder": False,
+    "show_ui_builder": True,
 
     ###############
     # Change view #
@@ -185,6 +190,7 @@ JAZZMIN_SETTINGS = {
 }
 
 MIDDLEWARE = [
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -199,8 +205,8 @@ ROOT_URLCONF = 'projecttracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [os.path.join(BASE_DIR, 'templates')],        
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'tracker/templates')],        
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -216,7 +222,7 @@ SESSION_COOKIE_AGE = 180 # 3 minutes
 SESSION_SAVE_EVERY_REQUEST = True
 
 WSGI_APPLICATION = 'projecttracker.wsgi.application'
-
+# AUTH_USER_MODEL = 'tracker.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -265,9 +271,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 STATIC_URL = 'static/'
-STATIC_ROOT = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = BASE_DIR / 'media'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
