@@ -3,16 +3,18 @@
 {% block content %}
 <div style="display: flex; justify-content: center;">
     <div class="max-w-xl rounded overflow-hidden shadow-lg">
-      <img class="w-full" src="{{ projectprogress.images.url }}" alt="projectProgress">
+      <img class="w-full" src="{{ projectprogress.main_image.url }}" alt="projectProgress">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ project.project_name }}</div>
         <p class="text-gray-700 text-base">
-          {{ projectprogress.description }}
+          {{ projectprogress.description }}<br>
+          Project Phase:{{ projectprogress.phase}}<br>
+          Start Date:{{projectprogress.start_date}}<br>
+          End Date: {{projectprogress.end_date}}<br>
+          Remaining Days: {{projectprogress.get_remaining_days}}
           
           
-          MORE CONTENT
-
-          
+              
       <div class="px-6 pt-4 pb-2">
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ project.project_location }}</span>
         <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ project.site_location }}</span>
@@ -43,7 +45,7 @@
       isHidden = !isHidden;
     });
   </script>
-  
+</div>
 <body class="p-20">
     <div class="p-5 bg-amber-200">
         <h1 class="mb-3 text-4xl font-light">{{project.project_name}}</h1>
@@ -53,27 +55,21 @@
           
           
           The project <b>{{project.project_name}}</b> was allocated to <b>{{project.company_name}}</b>. This Project Begins on <b>{{project.commencement_date}}</b> and is supposed 
-            to come to completion after a period of <b>{{project.contract_period_months}}</b> months. <br><br>
-            This project is overseen by the<b> {{project.procurement_department}}</b>.
+          to come to completion after a period of <b>{{project.contract_period_months}}</b> months. <br><br>
+          {% comment %} At the moment, the project is at phase {{projectProgress.phase}}. It should be completed by {{projectProgress.end_date}} {% endcomment %}
+            This project is overseen by the <b>{{project.procurrement_department}}</b>.<br><br>
         
             <!-- The three dots -->
             <span id="dots">...</span>
 
             <!-- This content only be shown as needed -->
             <span id="more" class="hidden">
-                  Vihiga Project Tracker is an Information Management System designed for Vihiga County, located in the Western parts of
-                  Kenya. It keeps records of the diverse construction and development projects within the county. This system significantly reduce workloads and streamlines paperwork, ensuring
-                  enhanced efficiency. Moreover, it revolutionalizes project tender allocation by fostering transparency. Project progress, more information on the projects and
-                  the funds allocated will be readily accessible to the general public, promoting integrity,equity, accountability,transparency and inclusivity
-               
-                    Sqm rate or lm: {{ project.sqm_rate_or_lm }}<br><br>
-                    Tender: {{ project.tender_no }}<br><br>
+                    Square per meter rate or lm: KSh {{ project.sqm_rate_or_lm }} <br><br>
                     Site Location: {{ project.site_location }}<br><br>
                     Floor Area: {{ project.floor_area }}<br><br>
-                    Contract Sum: {{ project.contract_sum }}<br>
+                    Contract Sum: Ksh {{ project.contract_sum }}<br>
                     Contract Period (months): {{ project.contract_period_months }}<br><br>
                     Work Status: {{ project.work_status }}<br><br>
-                    Completed: {{ project.completed }}<br><br>
                 
                 <span>
               </p>

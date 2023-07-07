@@ -1,18 +1,24 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.db import transaction
-from .models import Checklist
 from django import forms
-from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserChangeForm,UserCreationForm
+from django.contrib.auth.models import User
 
-# class StaffRegistrationForm(forms.ModelForm):
-#     password = forms.CharField(widget=forms.PasswordInput)
+class RegistrationForm(UserCreationForm):
+    email = forms.EmailField()
+    class Meta:
+        model = User
+        fields = [ 
+            # 'first_name',
+            'last_name',
+            'username',
+            'email',
+            'password1',
+            'password2',
+            'is_staff',]
     
-#     class Meta:
-#         model = Staff
-#         fields = ['username','password','email','role']
-        
-        
-        
-# class StaffLoginForm(forms.Form):
-#     username = forms.CharField()
-#     password = forms.CharField(widget=forms.PasswordInput)
+    def save(self,commit=True):
+        user = super().save(commit=False)
+        # user.email=self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
