@@ -28,13 +28,13 @@ DEBUG = True
 ALLOWED_HOSTS = ["*"]
 
 CORS_ORIGIN_WHITELIST = [
-    'https://web-production-42d2.up.railway.app',
+    'https://web-production-9112.up.railway.app/',
     # Add any other trusted origins here
 ]
 
 if not DEBUG:
     
-    CSRF_TRUSTED_ORIGINS=['https://web-production-42d2.up.railway.app']
+    CSRF_TRUSTED_ORIGINS=['https://web-production-9112.up.railway.app/']
 
 
 # Application definition
