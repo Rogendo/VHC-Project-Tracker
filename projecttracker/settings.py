@@ -28,11 +28,11 @@ DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 CORS_ORIGIN_WHITELIST = [
-    'https://web-production-9112.up.railway.app',
+    'https://vhc-project-tracker-production.up.railway.app',
     # Add any other trusted origins here
 ]
 
-CSRF_TRUSTED_ORIGINS=['https://web-production-9112.up.railway.app',
+CSRF_TRUSTED_ORIGINS=['https://vhc-project-tracker-production.up.railway.app',
                      ]
 
 # Application definition
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tracker',
-    "corsheaders",
 ]
 
 INTERNAL_IPS = [
@@ -202,7 +201,6 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
 
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
