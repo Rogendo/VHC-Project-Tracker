@@ -33,7 +33,7 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 CSRF_TRUSTED_ORIGINS=['https://web-production-9112.up.railway.app/',
-                         'https://web-production-9112.up.railway.app/admin/login/?next=/admin/',]
+                      'https://web-production-9112.up.railway.app/admin/login/?next=/admin/',]
 
 
 # Application definition
