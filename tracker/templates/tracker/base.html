@@ -95,7 +95,6 @@ $(document).ready(function() {
   $('#mobile-menu a').on('click', function(){
     $('#mobile-menu').removeClass('active');  
   });
-
   // Hide the mobile menu when the user clicks outside of it
   $(document).on('click',function(event){
     if (!$(event.target).closest('.sm:hidden button').length && !$(event.target).closest('#mobile-menu').length){
