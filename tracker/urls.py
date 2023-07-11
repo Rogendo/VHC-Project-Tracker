@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls import handler404
 
-handler404=views.custom_404
 urlpatterns = [
     path("",views.home,name="home"),
     path('items/<int:pk>/',views.detail, name='detail'),

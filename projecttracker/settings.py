@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)1z8c-90uqp4%peeftnm_*le0)(5k5d)@r8rz5fa6c^n&s)iv*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -65,7 +65,7 @@ JAZZMIN_SETTINGS = {
     "site_logo": "jazzmin/img/default-log.svg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "jazzmin/img/default.png",
+    "login_logo": "jazzmin/img/icon.jpg",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
     "login_logo_dark": None,
@@ -213,8 +213,8 @@ ROOT_URLCONF = 'projecttracker.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'tracker/templates')],        
-        # 'DIRS': [],
+        # 'DIRS': [os.path.join(BASE_DIR, 'tracker/templates')],        
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -290,7 +290,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR , 'media')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
