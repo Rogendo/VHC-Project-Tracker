@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <script src="{% static 'js/jquery.min.js'%}"></script>
 
     <link href="{% static 'images/icon.jpg' %}" rel="icon">
     
     <title>{% block title %}{% endblock title %}| Project Management System</title>
 </head>
-<body>
-    <nav class="bg-white dark:bg-gray-900  w-full z-20 top-0 left-0 ">
+    <nav class="bg-white dark:bg-gray-900 fixed  w-full z-15 top-0 left-0 ">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-26 items-center justify-between">
+        <div class="relative flex h-15 items-center justify-between">
           <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
             <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
@@ -41,8 +40,8 @@
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex flex-shrink-0 items-center">
               <a href="/" class="flex items-center">
-                <img class="block h-25 w-auto lg:hidden" src="{% static 'images/icon.jpg' %}" alt="Vihiga County Logo">
-                <img class="hidden h-25 w-auto lg:block" src="{% static 'images/icon.jpg' %}" alt="Vihiga County Logo">
+                <img class="block h-15 w-auto lg:hidden" src="{% static 'images/icon.jpg' %}" alt="Vihiga County Logo">
+                <img class="hidden h-15 w-auto lg:block" src="{% static 'images/icon.jpg' %}" alt="Vihiga County Logo">
   
                 {% comment %} <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">Vihiga Projects</span> {% endcomment %}
             </a>
@@ -73,17 +72,43 @@
         </div>
       </div> 
     </nav>
+    
+<style>
+  /* Hide the mobile menu by default */
+#mobile-menu {
+  display: none;
+}
 
+/* Show the mobile menu when the button is clicked */
+#mobile-menu.active {
+  display: block;
+}
 
+</style>
+<script>
+$(document).ready(function() {
+  // Toggle the mobile menu on button click
+  $('.sm:hidden button').on('click', function() {
+    $('#mobile-menu').toggleClass('active');
+  });
+// Hide the mobile menu when a link is clicked
+  $('#mobile-menu a').on('click', function(){
+    $('#mobile-menu').removeClass('active');  
+  });
+  // Hide the mobile menu when the user clicks outside of it
+  $(document).on('click',function(event){
+    if (!$(event.target).closest('.sm:hidden button').length && !$(event.target).closest('#mobile-menu').length){
+      $('#mobile-menu'.removeClass('active'));
+    }
+  });
+});
 
-    <div class="px-6 py-6">
-        {% block content %}
-        {% endblock content %}
-    </div>
+  
 
-
+</script>
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
+
 tailwind.config = {
   content: [
     './recharge_theme/**/*.html',
@@ -256,15 +281,25 @@ tailwind.config = {
   plugins: [],
 }
 </script>
+<body>
+    <br><br>
 
 
+
+    <div class="px-6 py-6">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+</body>
 <br><br>
  
 <footer id="shopify-section-site-footer" class="shopify-section">
   <!-- Site Footer -->
   <div class="bg-pine">
+  {% comment %} <div class="bg-gray-800"> {% endcomment %}
+
     <div class="mx-auto px-6 md:px-12 max-w-[87rem]">
-    <!--div class="bg-gray-800"-->
 
       <div class="footer-primary-menu pt-4 pb-6 md:pt-12 md:pb-[60px] lg:px-20 xl:px-[100px] text-white">
         <ul class="list-none p-0 md:grid md:grid-cols-3 lg:grid-cols-3 md:gap-x-6 xl:gap-x-8">
@@ -594,5 +629,4 @@ tailwind.config = {
 <!-- /Site Footer -->
 </footer>
 
-</body>
 </html>
