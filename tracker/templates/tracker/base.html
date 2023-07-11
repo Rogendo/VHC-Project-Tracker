@@ -9,15 +9,14 @@
 
 
     <link href="{% static 'images/icon.jpg' %}" rel="icon">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     
     <title>{% block title %}{% endblock title %}| Project Management System</title>
 </head>
 <body>
-    <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 ">
+    <nav class="bg-white dark:bg-gray-900  w-full z-20 top-0 left-0 ">
       <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-26 items-center justify-between">
-          {% comment %} <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
             <!-- Mobile menu button-->
             <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
               <span class="sr-only">Open main menu</span>
@@ -38,7 +37,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-          </div> {% endcomment %}
+          </div> 
           <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
             <div class="flex flex-shrink-0 items-center">
               <a href="/" class="flex items-center">
@@ -63,7 +62,7 @@
         </div>
       </div>
     
-      {% comment %} <!-- Mobile menu, show/hide based on menu state. -->
+   <!-- Mobile menu, show/hide based on menu state. -->
       <div class="sm:hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -72,8 +71,11 @@
           <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Sign Up</a>
           <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Login</a>
         </div>
-      </div> {% endcomment %}
+      </div> 
     </nav>
+
+
+<!-- This is gibberish, anyways tomorrow edit the detail.html. add a back button to the page leading to the home.html. also edit the navigation you just created, its not as beautiful -->
 
     <div class="px-6 py-6">
         {% block content %}
