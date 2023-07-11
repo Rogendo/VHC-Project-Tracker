@@ -119,7 +119,7 @@ JAZZMIN_SETTINGS = {
     "usermenu_links": [
         {"name": "Support", "url": "#", "new_window": True,'icon':"fas fa-handshake"},
         {"model": "auth.user"},
-        {"name": "Website","url":"","new_window":True,'icon':"fas fa-globe"},
+        {"name": "Website","url":"/","new_window":True,'icon':"fas fa-globe"},
     ],
 
     #############
