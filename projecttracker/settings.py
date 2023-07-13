@@ -65,10 +65,10 @@ JAZZMIN_SETTINGS = {
     "site_logo": "jazzmin/img/default-log.svg",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
-    "login_logo": "jazzmin/img/icon.jpg",
+    "login_logo": "jazzmin/img/favicon.png",
 
     # Logo to use for login form in dark themes (defaults to login_logo)
-    "login_logo_dark": None,
+    "login_logo_dark": "jazzmin/img/default.png",
 
     # CSS classes that are applied to the logo above
     "site_logo_classes": "img-square",
@@ -119,7 +119,7 @@ JAZZMIN_SETTINGS = {
     "usermenu_links": [
         {"name": "Support", "url": "#", "new_window": True,'icon':"fas fa-handshake"},
         {"model": "auth.user"},
-        {"name": "Website","url":"","new_window":True,'icon':"fas fa-globe"},
+        {"name": "Website","url":"/","new_window":True,'icon':"fas fa-globe"},
     ],
 
     #############
@@ -286,7 +286,7 @@ STATICFILES_DIRS = [
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 
