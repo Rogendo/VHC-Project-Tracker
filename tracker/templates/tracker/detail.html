@@ -1,60 +1,117 @@
 {% extends 'tracker/base.html' %}
-{% load static %}
+
 {% block content %}
+<a href="{% url 'home' %}"class="bg-gray-900 text-white  hover:bg-green-700 hover:text-white rounded-md px-3 py-2 text-sm " >Back</a>
 
+<br><br><br><br>
+<div style="display: flex; justify-content: center;">
+    <div class="max-w-xl rounded overflow-hidden shadow-lg">
+      <img class="w-full" src="{{ projectprogress.main_image.url }}" alt="projectProgress">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{ project.project_name }}</div>
+        <p class="text-gray-700 text-base">
+          {{ projectprogress.description }}<br>
+          Project Phase:{{ projectprogress.phase}}<br>
+          Start Date:{{projectprogress.start_date}}<br>
+          End Date: {{projectprogress.end_date}}<br>
+          Remaining Days: {{projectprogress.get_remaining_days}}
+          
+          
+              
+      <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ project.project_location }}</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ project.site_location }}</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ project.contract_period_months }} Months</span>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+  
+  <script>
+    const readMoreBtn = document.getElementById('readMoreBtn');
+    const hiddenContent = document.getElementById('hiddenContent');
+    let isHidden = true;
+  
+    readMoreBtn.addEventListener('click', function () {
+      if (isHidden) {
+        hiddenContent.style.display = 'inline';
+        readMoreBtn.textContent = 'Read Less';
+      } else {
+        hiddenContent.style.display = 'none';
+        readMoreBtn.textContent = 'Read More';
+      }
+      isHidden = !isHidden;
+    });
+  </script>
+</div>
+<div class="p-20">
+    <div class="p-5 bg-amber-200">
+        <h1 class="mb-3 text-4xl font-light">{{project.project_name}}</h1>
 
-<section class="blog py-5">
-	<div class="container py-md-5 py-3">
-		<h3 class="heading text-center mb-sm-5 mb-4">{{ project.project_name }} Progress</h3>
-		<div class="row blog-grids">
-			
-			<div class="col-lg-5 mb-lg-0 mb-4">
-				<h5>March 3, 2019.</h5>
-				<h4 class="my-3">Description</h4>
-				<p class="my-3">{{ projectprogress.description }}</p>
-        <p>The project <b>{{project.project_name}}</b> was allocated to <b>{{project.company_name}}</b>. This Project Begins on <b>{{project.commencement_date}}</b> and is supposed 
-          to come to completion after a period of <b>{{project.contract_period_months}}</b> months. <br>
+        <!-- This text always show up -->
+        <p>
+          
+          
+          The project <b>{{project.project_name}}</b> was allocated to <b>{{project.company_name}}</b>. This Project Begins on <b>{{project.commencement_date}}</b> and is supposed 
+          to come to completion after a period of <b>{{project.contract_period_months}}</b> months. <br><br>
+          {% comment %} At the moment, the project is at phase {{projectProgress.phase}}. It should be completed by {{projectProgress.end_date}} {% endcomment %}
             This project is overseen by the <b>{{project.procurrement_department}}</b>.<br><br>
-
         
-          {% comment %} Square per meter rate or lm: KSh {{ project.sqm_rate_or_lm }} <br><br> {% endcomment %}
-          {% comment %} Site Location: {{ project.site_location }}<br><br> {% endcomment %}
-          Floor Area: {{ project.floor_area }}<br>
-          Contract Sum: Ksh {{ project.contract_sum }}<br>
-          Work Status: {{ project.work_status }}<br><br>
-                
-        </p>
-          <div class="property-info-list">
-            <div class="detail">
-                <h4 class="title">
-                    <a href="#">{{ project.site_location }}</a>
-                </h4>
-                <div class="location mt-2">
-                    <a href="#">
-                  <span class="fa fa-map-marker"></span>   {{ project.project_location }} / Kenya
-                </a>
-                </div>
-                <ul class="facilities-list clearfix">
-                    <li>
-                        <span class="fa fa-clock-o"></span> {{projectprogress.get_remaining_days}} days to project completion
-                    </li>
-                    <br>
-                </ul>
-            </div>
-            <div class="footer-properties">
-                <a class="admin" href="#">
-                <span class="fa fa-user"></span> {{project.company_name}}<br>
-            </a>
-                <span class="year text-right"> <span class="fa fa-calendar"></span> Start Date: {{projectprogress.start_date}}</span>
+            <!-- The three dots -->
+            <span id="dots">...</span>
 
-            </div>
-        </div>
-			</div>
-			<div class="col-lg-7 blog-img2">
-        <img src="{{ projectprogress.main_image.url }}" alt="projectProgress" style="border-radius:5%;">
-				{% comment %} <a href="#"></a> {% endcomment %}
-			</div>
-		</div>
-	</div>
-</section>
+            <!-- This content only be shown as needed -->
+            <span id="more" class="hidden">
+                    Square per meter rate or lm: KSh {{ project.sqm_rate_or_lm }} <br><br>
+                    Site Location: {{ project.site_location }}<br><br>
+                    Floor Area: {{ project.floor_area }}<br><br>
+                    Contract Sum: Ksh {{ project.contract_sum }}<br>
+                    Contract Period (months): {{ project.contract_period_months }}<br><br>
+                    Work Status: {{ project.work_status }}<br><br>
+                
+                <span>
+              </p>
+        
+
+        <!-- Implement the read more/read less button -->
+        <button onclick="toggleText()" id="button"
+            class="mt-3 px-5 py-2 bg-rose-500 text-white duration-300 hover:bg-rose-700">Read
+            more</button>
+    </div>
+
+<!-- Javascript code -->
+<script>
+    function toggleText() {
+        var dots = document.getElementById("dots");
+        var moreText = document.getElementById("more");
+        var button = document.getElementById("button");
+
+        if (dots.classList.contains("hidden")) {
+            // Show the dots
+            dots.classList.remove("hidden");
+
+            // Hide the more text
+            moreText.classList.add("hidden");
+
+            // change text of the button
+            button.innerHTML = "Read more";
+        } else {
+            // Hide the dots
+            dots.classList.add("hidden");
+
+            // hide the more text
+            moreText.classList.remove("hidden");
+
+            // change text of the button
+            button.innerHTML = "Read less";
+        }
+    }
+</script>
+</div>
+
 {% endblock %}
