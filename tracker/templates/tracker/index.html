@@ -1,165 +1,30 @@
 {% extends 'tracker/base.html'%}
 {% block title %} Vihiga County {% endblock title %}
 {% block content %}
-{% load static %}
 
-<!-- banner -->
-<div class="banner" id="home">
-	<div class="layer">
-		<div class="container">
-			<div class="banner-text-agile">
-				<div class="row">
-					<div class="col-lg-6 p-0">
-						<!-- banner slider-->
-					<div class="csslider infinity" id="slider1">
-						<input type="radio" name="slides" checked="checked" id="slides_1" />
-						<input type="radio" name="slides" id="slides_2" />
-						<input type="radio" name="slides" id="slides_3" />
-						<ul class="banner_slide_bg">
-							<li>
-								<div class="container-fluid">
-									<div class="w3ls_banner_txt">
-										<h3 class="b-w3ltxt text-capitalize mt-md-4"><span>Vihiga County  </span>Project Tracker.</h3>
-										<p class="w3ls_pvt-title my-3">Efficient, Accountable and Transparent Project Management System. 
-                                            <br>Sign Up as an admin</p>
-																			
-                                        </div>
-								</div>
-							</li>
-							
-						</ul>
-						
-					</div>
-					<!-- //banner slider-->
+<div class = "mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center font-bold">Recent Projects</h2>
+    <div class="grid grid-cols-3 gap-3">
+        {% for project in projects %}
+        <div>
+            <a href=" {% url 'detail' project.id%}">
 
-					</div>
-					<div class="col-lg-6 col-md-8">
-                        <img src="{% static 'images/favicon.png' %}" alt="Vihiga County Logo" >
-					</div>
-                    <div class="login-icon ml-2">
-                        <a class="user" href="{% url 'create_account' %}"> Get Started</a>
-                    </div>
-				</div>
-			</div>
-		</div>
-	</div>
+                
+                <div class="p-6 bg-white rounded-b-xl">
+                    <p class="text-2xl text-blue-500 font-bold">{{ project.project_name}} </p>
+                </div>
+            </a>
+            <div>
+                <p class="text-1xl  ">Project Location: {{ project.project_location}} </p>
+                <p class="text-1xl">Company Name : {{ project.company_name}} </p>
+                <p class="text-1xl">Commencement Date : {{ project.commencement_date}} </p>
+                <p class="text-1xl">Contract Period in Months: {{ project.contract_period_months}} </p>
+            </div>
+            <div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
-<!-- //banner -->
-
-
-<!-- projects -->
-<section class="projects py-5">
-	<div class="container py-lg-5">
-		<h3 class="heading text-center mb-sm-5 mb-4">Recent Projects </h3>
-		<div class="row offer-grids">
-            {% for project in projects %}
-			<div class="col-lg-4 col-md-6">
-				<div class="ser1">
-					<div class="bg-layer">
-						<a href=" {% url 'detail' project.id%}">
-
-							<h4 class="">{{ project.project_name}}</h4>
-						</a>
-
-						<p class="mt-3"><p class="text-1xl">Company Name : {{ project.company_name}} </p>
-                        <p class="text-1xl">Commencement Date : {{ project.commencement_date}} </p>
-                        <p class="text-1xl">Contract Period in Months: {{ project.contract_period_months}} </p>
-					</div>
-				</div>
-			</div>
-            {% endfor %}
-			
-		</div>
-	</div>
-</section>
-<!-- //projects -->	
-
-<!-- testimonials -->
-<section class="feedback" id="testimonials">
-	<div class="feedback-layer py-5">
-		<div class="container py-lg-5">
-		<h3 class="heading text-center mb-sm-5 mb-4">Testimonials</h3>
-			<div class="row">
-				<div class="col-lg-4 col-md-6">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<span class="fa fa-quote-right"></span> 
-							<p>Our government will endeavour to improve the existing healthcare, education, trade and other failities through 
-								renovation and provision of the necessary medical equipment and drugs for better delivery of services to the people.</p>
-							<div class="clearfix"></div>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-
-								<img src="{% static 'images/dpgovernor.jpg' %}" class="img-fluid" alt="">
-							</div>
-							<div class="feedback-img-info">
-								<h5>Wilberforce Kitiezo</h5>
-
-								<h6><i>Deputy Governor</i></h6>
-								<p class="font-italic">- November 3, 2022.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mt-md-0 mt-5">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<span class="fa fa-quote-right"></span> 
-							<p> My government will promote unity of purpose and inclusivity of all communities residing within Vihiga County.
-								 It will transact all its business in a transparent and accountable manner and will put systems in place to ensure that this is adhered to.</p>
-							<div class="clearfix"></div>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="{% static 'images/governor.jpg' %}" class="img-fluid" alt="">
-							</div>
-							<div class="feedback-img-info">
-								<h5>Dr Wilber Ottichilo</h5>
-								<h6><i>Governor Vihiga County</i></h6>
-								<p class="font-italic">- August 21, 2017.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 mt-lg-0 mt-5">
-					<div class="feedback-info">
-						<div class="feedback-top p-4">
-							<span class="fa fa-quote-right"></span> 
-							<p>This new elected county government is capable of serving the common mwanainchi. <br><br>I believe that through unity and work,
-								 we would progress to higher highs.<br> Lets keep up with the good work.</p>
-							<div class="clearfix"></div>
-						</div>
-						<div class="feedback-grids">
-							<div class="feedback-img">
-								<img src="{% static 'images/f.png' %}" class="img-fluid" alt="">
-							</div>
-							<div class="feedback-img-info">
-								<h5>Mary Nekesa</h5>
-								<h6><i>Resident</i></h6>
-
-								<p class="font-italic">- January 3, 2023.</p>
-							</div>
-							<div class="clearfix"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<!-- //testimonials -->
-
-<!-- appointment -->
-<section class="appointment align-center py-5">
-	<div class="container py-sm-3">
-		<h4>For More enquiries, do not hesitate.</h4>
-		<p class="mt-3">Email us Today</p>
-		<a href="mailto:communications@vihiga.go.ke">communications@vihiga.go.ke</a> or 
-		<a href="mailto:info@vihiga.go.ke">info@vihiga.go.ke</a>
-	</div>
-</section>
-<!-- //appointment -->
-{% endblock %}
+   {% endblock content %}
