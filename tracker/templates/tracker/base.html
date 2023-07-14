@@ -1,632 +1,164 @@
+
 <!DOCTYPE html>
-{% load static %}
 <html lang="en">
+	{% load static %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="{% static 'js/jquery.min.js'%}"></script>
+<link href="{% static 'images/favicon.png' %}" rel="icon">   
+<title>{% block title %}{% endblock title %}| Project Management System</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Dental Health Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 
-    <link href="{% static 'images/favicon.png' %}" rel="icon">
-    
-    <title>{% block title %}{% endblock title %}| Project Management System</title>
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+	
+	<!-- css files -->
+	<link href="{% static 'css/css_slider.css'  %}" type="text/css" rel="stylesheet" media="all"> <!--slider css -->
+
+	<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+
+    <link href="{% static 'css/style.css '%} " rel='stylesheet' type='text/css' /><!-- custom css -->
+    <link href="{% static 'css/font-awesome.min.css' %} " rel="stylesheet"><!-- fontawesome css -->
+	<!-- //css files -->
+	
+	<!-- google fonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800&amp;subset=latin-ext" rel="stylesheet">
+	<!-- //google fonts -->
+	
 </head>
-    <nav class="bg-white dark:bg-gray-900 fixed  w-full z-15 top-0 left-0 ">
-      <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <div class="relative flex h-15 items-center justify-between">
-          <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-            <!-- Mobile menu button-->
-            <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-              <span class="sr-only">Open main menu</span>
-              <!--
-                Icon when menu is closed.
-    
-                Menu open: "hidden", Menu closed: "block"
-              -->
-              <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-              <!--
-                Icon when menu is open.
-    
-                Menu open: "block", Menu closed: "hidden"
-              -->
-              <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div> 
-          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-            <div class="flex flex-shrink-0 items-center">
-              <a href="/" class="flex items-center">
-                <img class="block h-15 w-auto lg:hidden" src="{% static 'images/favicon.png' %}" alt="Vihiga County Logo">
-                <img class="hidden h-15 w-auto lg:block" src="{% static 'images/favicon.png' %}" alt="Vihiga County Logo">
-  
-                {% comment %} <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">Vihiga Projects</span> {% endcomment %}
-            </a>
-              
-            </div>
-            <div class="hidden sm:ml-6 sm:block">
-              <div class="flex space-x-4">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                <a href="{% url 'home' %}"class="bg-gray-900 text-white  hover:bg-green-700 hover:text-white rounded-md px-3 py-2 text-sm " >Projects</a>
-                <a href="{% url 'completed' %}" class=" bg-gray-900 text-white hover:bg-green-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"> Completed Projects</a>
-                <a href="{% url 'create_account' %}"class=" bg-gray-900 text-white hover:bg-green-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Sign Up</a>
-                <a href="{% url 'login' %}" class=" bg-gray-900 text-white hover:bg-green-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Login</a>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    
-   <!-- Mobile menu, show/hide based on menu state. -->
-      <div class="sm:hidden" id="mobile-menu">
-        <div class="space-y-1 px-2 pb-3 pt-2">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <a href="#" class="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Home</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Complete</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Sign Up</a>
-          <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Login</a>
-        </div>
-      </div> 
-    </nav>
-    
-<style>
-  /* Hide the mobile menu by default */
-#mobile-menu {
-  display: none;
-}
-
-/* Show the mobile menu when the button is clicked */
-#mobile-menu.active {
-  display: block;
-}
-
-</style>
-<script>
-$(document).ready(function() {
-  // Toggle the mobile menu on button click
-  $('.sm:hidden button').on('click', function() {
-    $('#mobile-menu').toggleClass('active');
-  });
-// Hide the mobile menu when a link is clicked
-  $('#mobile-menu a').on('click', function(){
-    $('#mobile-menu').removeClass('active');  
-  });
-  // Hide the mobile menu when the user clicks outside of it
-  $(document).on('click',function(event){
-    if (!$(event.target).closest('.sm:hidden button').length && !$(event.target).closest('#mobile-menu').length){
-      $('#mobile-menu'.removeClass('active'));
-    }
-  });
-});
-
-  
-
-</script>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-
-tailwind.config = {
-  content: [
-    './recharge_theme/**/*.html',
-    './src/**/*.html',
-    './src/**/*.liquid',
-    './src/**/*.js',
-    './src/**/*.jsx'
-  ],
-  darkMode: false, // or 'media' or 'class'
-  theme: {
-    container: {
-      maxWidth: "1440px"
-    },
-    colors: {
-      // TUFT Utility Colors
-      "white": "#FFFFFF",
-      "ultra-light-gray": "#F6F6F6",
-      "light-gray": "#E9E9E9",
-      "gray": "#BFBFBD",
-      "medium-gray": "#716F6C",
-      "success-light": "#C2F8E1",
-      "success-medium": "#60EDB3",
-      "success-dark": "#0F8453",
-      "warning-light": "#FFF4B5",
-      "warning-medium": "#F4DB51",
-      "warning-dark": "#7B6A09",
-      "info-light": "#CEDFF8",
-      "info-medium": "#8DB5F2",
-      "info-dark": "#3A5CE4",
-      "error-light": "#FFCBCB",
-      "error-medium": "#FF6868",
-      "error-dark": "#D62D2D",
-      "promotion-color": "#AB2210",
-      "transparent": "transparent",
-      "inherit": "inherit",
-      // TUFT Brand Colors
-      "primary-green": "#60EDB3",
-      "mint-green": "#ECEFEC",
-      "mint-green-30": "#90F2CA",
-      "graphite": "#2B2823",
-      "pine": "#062D31",
-      "moss": "#4C6A30",
-      "persimmon": "#FCB316",
-      "glacier": "#9FE5F0",
-      "bone": "#F5F1EA",
-    },
-    fontFamily: {
-      "apercu": ['Apercu', 'sans-serif'],
-      "apercu-bold": ['Apercu Bold', 'sans-serif'],
-      "sans": ['Arial', 'sans-serif'],
-      "tiempos": ['Tiempos Headline', 'serif']
-    },
-    screens: {
-      // Media query breakpoints
-      // All breakpoints use min-width
-      'xs': '20rem', //320px
-      'sm': '30rem', //480px
-      'md': '47rem', //752px
-      'lg': '64rem', //1024px
-      'xl': '80rem', //1280px
-      'xlr': '81.87rem', //Do we need this?
-      '2xl': '90rem', //1440px
-      '3xl': '96rem', //1536px
-    },
-    borderWidth: {
-      DEFAULT: '1px',
-      '0': '0',
-      '1.5': '1.5px',
-      '2': '2px',
-      '3': '3px',
-      '4': '4px',
-      '6': '6px',
-      '8': '8px',
-    },
-    extend: {
-      borderRadius: {
-        // Add border radius configurations here if Talwind's defaults are not enough.
-        // SEE THIS BEFORE ADDING: https://tailwindcss.com/docs/border-radius
-        "4xl": "2rem",
-      },
-      borderColor: theme => theme('colors'),
-      fill: theme => theme('colors'),
-      stroke: theme => theme('colors'),
-      gridTemplateColumns: {
-        'page': '305px 1fr',
-      },
-      spacing: {
-        "1.25": "0.3125rem",
-        "2": "0.5rem",
-        "3": "0.75rem",
-        "3.5": "0.875rem",
-        "9": "2.25rem",
-        "14": "3.5rem",
-        "15": "3.75rem",
-        "17": "4.25rem",
-        "18": "4.5rem",
-        "22": "5.5rem",
-        "25": "6.25rem",
-        "26.5": "6.625rem",
-        "30": "7.5rem",
-        "40": "10rem",
-        "two-fifths": "40%",
-        "two-thirds": "66.67%",
-        "100percent": "100%",
-        "110percent": "110%",
-        "148percent": "148%",
-      },
-      width: {
-        "one-third": "33.33%",
-        "0.5": "0.125rem",
-        "40": "10rem",
-      },
-      height: {
-        "12.5": "3.125rem",
-        "7": "1.75rem"
-      },
-      maxWidth: {
-        "24": "6rem",
-        "40": "10rem",
-        "50": "12.5rem",
-        "81.25": "20.3125rem",
-        "106": "26.5rem",
-        "120": "30rem",
-        "162": "40.5rem",
-        "210.25": "52.5625rem",
-        "286": "71.5rem",
-        "342": "85.5rem",
-        "100": "25rem",
-        "one-third": "33.33%",
-        "two-thirds": "66.67%",
-      },
-      minWidth: {
-        "56.25": "14.0625rem",
-        "40": "10rem",
-      },
-      gap: {
-        "2.75": "0.6875rem",
-      },
-      letterSpacing: {
-        swide: '0.25px',
-      },
-      inset: {
-        "cart": '-30rem',
-      },
-      lineHeight: {
-        '0': '0'
-      },
-      transitionProperty: {
-        'left': 'left'
-      },
-      zIndex: {
-        '1': '1',
-        '2': '2',
-      }
-    }
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['hover', 'checked', 'disabled'],
-      opacity: ['disabled'],
-      borderWidth: ['hover', 'checked', 'group-hover'],
-      borderColor: ['hover', 'checked', 'group-hover'],
-      boxShadow: ['hover', 'group-focus'],
-      fontFamily: ['hover', 'focus', 'visited'],
-      fill: ['hover', 'group-hover'],
-      stroke: ['hover', 'group-hover'],
-      scale: ['active', 'group-hover'],
-    },
-  },
-  plugins: [],
-}
-</script>
 <body>
-    <br><br>
 
+
+<!-- //header -->
+<header class="py-3">
+	<div class="container">
+			<div id="logo">
+				 <a href="{% url 'home' %}">
+					<img src="{% static 'images/favicon.png' %}" alt="Vihiga County Logo" width="150.5" height="80">
+				</a>
+			</div>
+		<!-- nav -->
+		<nav class="d-lg-flex">
+
+			<label for="drop" class="toggle"><span class="fa fa-bars"></span></label>
+			<input type="checkbox" id="drop" />
+			<ul class="menu mt-2 ml-auto">
+				<a href="{% url 'home' %}" >Projects</a>
+				<a href="{% url 'completed' %}" > Completed Projects</a>
+				
+			</ul>
+			
+			<div class="login-icon ml-2">
+				<a class="user" href="{% url 'login' %}"> Login</a>
+			</div>
+		</nav>
+		<div class="clear"></div>
+		<!-- //nav -->
+	</div>
+</header>
+<!-- //header -->
+<body>
+   
+	<br><br><br><br>
 
 
     <div class="px-6 py-6">
         {% block content %}
+
         {% endblock content %}
     </div>
 
 </body>
 <br><br>
- 
-<footer id="shopify-section-site-footer" class="shopify-section">
-  <!-- Site Footer -->
-  <div class="bg-pine">
-  {% comment %} <div class="bg-gray-800"> {% endcomment %}
-
-    <div class="mx-auto px-6 md:px-12 max-w-[87rem]">
-
-      <div class="footer-primary-menu pt-4 pb-6 md:pt-12 md:pb-[60px] lg:px-20 xl:px-[100px] text-white">
-        <ul class="list-none p-0 md:grid md:grid-cols-3 lg:grid-cols-3 md:gap-x-6 xl:gap-x-8">
-          <li class="footer-menu-list--contact">
-            <!-- Contact Info -->
-            <span class="large-text font-bold">
-              Contact
-          
-            </span><br><br>
-            <ul class="grid gap-y-3 list-none pt-3 pl-0 medium-text md:pt-2">
-      
-              <li class="m-0">
-                <p class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 3.75v4.5m0-4.5h-4.5m4.5 0l-6 6m3 12c-8.284 0-15-6.716-15-15V4.5A2.25 2.25 0 014.5 2.25h1.372c.516 0 .966.351 1.091.852l1.106 4.423c.11.44-.054.902-.417 1.173l-1.293.97a1.062 1.062 0 00-.38 1.21 12.035 12.035 0 007.143 7.143c.441.162.928-.004 1.21-.38l.97-1.293a1.125 1.125 0 011.173-.417l4.423 1.106c.5.125.852.575.852 1.091V19.5a2.25 2.25 0 01-2.25 2.25h-2.25z" /></svg>
-                  </path>
-                  </svg>
-                  <span class="pl-2">0800720378</span>
-                </p>
-              </li>
-
-              <li class="m-0">
-                <p class="flex items-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 9v.906a2.25 2.25 0 01-1.183 1.981l-6.478 3.488M2.25 9v.906a2.25 2.25 0 001.183 1.981l6.478 3.488m8.839 2.51l-4.66-2.51m0 0l-1.023-.55a2.25 2.25 0 00-2.134 0l-1.022.55m0 0l-4.661 2.51m16.5 1.615a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V8.844a2.25 2.25 0 011.183-1.98l7.5-4.04a2.25 2.25 0 012.134 0l7.5 4.04a2.25 2.25 0 011.183 1.98V19.5z" />
-                      </svg>
-                    </path>
-                  </svg>
-                  <span class="pl-2"> communications@vihiga.go.ke </span>
-                </p>
-              </li>
-        
-              <li class="m-0">
-                <p class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
-                  </svg>
-                  
-                  </svg>
-                  <span class="pl-2"> info@vihiga.go.ke</span>
-                </p>
-              </li>
-              <li class="m-0">
-                <a href="https://vihiga.go.ke" class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                  </svg>
-                  
-                  <span class="pl-2">Website</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <p class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                  
-                  <span class="pl-2"> Mbale Town, Vihiga County- Kenya</span>
-                </p>
-              </li>
-        
-              <li class="m-0">
-                <p  class="flex items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75H6.912a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H15M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859M12 3v8.25m0 0l-3-3m3 3l3-3" />
-                  </svg>
-                  
-                  <span class="pl-2"> P.O.Box 344 – 50300</span>
-                </p>
-              </li><br>
-
-            </ul>
-          </li>
-
-          <li class="footer-menu-list--links">
-            <!--Internal  Links -->
-            <span class="large-text font-bold">
-              Internal Links
-            </span><br><br>
-            <ul class="grid gap-y-3 list-none pt-3 pl-0 medium-text md:pt-2">
-              <li class="m-0">
-                <a href="{% url 'home' %}" class="flex items-center">
-                  
-                  <span class="pl-2">Home</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="{% url 'login' %}" class="flex items-center">
-                  
-                  <span class="pl-2">Admin Login</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="{% url 'create_account' %}" class="flex items-center">
-                  
-                  <span class="pl-2">Admin SignUp</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="{% url 'privacy' %}" class="flex items-center">
-                  
-                  <span class="pl-2">Privacy Policy</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="{% url 'terms' %}" class="flex items-center">
-                  
-                  <span class="pl-2">Terms and Conditions</span>
-                </a>
-              </li><br><br>
-             
 
 
+<!-- footer -->
+<footer class="py-5">
+	<div class="container py-sm-3 align-center">
+		<div class="row footer-grids">
+			<div class="col-lg-4 col-md-6 mb-lg-0 mb-md-5 mb-4">
+				<h4 class="mb-md-4 mb-3">About</h4>
+				<p class="mb-3">Vihiga Project Tracker is an Information Management System designed for Vihiga County, located in the Western parts of
+					Kenya. It keeps records of the diverse construction and development projects within the county. This system significantly reduce workloads and streamlines paperwork, ensuring
+					enhanced efficiency. Moreover, it revolutionalizes project tender allocation by fostering transparency. Project progress, more information on the projects and
+					the funds allocated will be readily accessible to the general public, promoting integrity,equity, accountability,transparency and inclusivity.
+				</p>
+			</div>
+			<div class="col-lg-4 col-md-6 mb-lg-0 mb-md-5 mb-4">
+				<h4 class="mb-md-4 mb-3">Contact Info</h4>
+				<p><span class="fa mr-2 fa-map-marker"></span>Mbale Town, Vihiga County, Kenya.</span></p>
+				<p class="phone py-2"><span class="fa mr-2 fa-phone"></span> 0800720378 </p>
+				<p><span class="fa mr-2 fa-envelope"></span><a href="mailto:info@vihiga.go.ke">info@vihiga.go.ke</a></p>
+				<p><span class="fa mr-2 fa-envelope"></span><a href="mailto:communications@vihiga.go.ke">communications@vihiga.go.ke</a></p>
+				<p><span class="fa mr-2 fa-inbox"></span>P.O.Box 344 – 50300</p>
 
-            </ul>
-            <!--External Links-->
-            <span class="large-text font-bold">
-              External Links
-            </span><br><br>
-            <ul class="grid gap-y-3 list-none pt-3 pl-0 medium-text md:pt-2">
-      
-              <li class="m-0">
-                <a href="https://www.countyprojects.or.ke/" class="flex items-center">
-                  
-                  <span class="pl-2">CDIP Portal</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="https://accounts.ecitizen.go.ke/login" class="flex items-center">
-                  
-                  <span class="pl-2">E-Citizen Portal</span>
-                </a>
-              </li>
-              
-              <li class="m-0">
-                <a href="https://itax.kra.go.ke/KRA-Portal/" class="flex items-center">
-                  
-                  <span class="pl-2">KRA Itax Portal</span>
-                </a>
-              </li>
-              <li class="m-0">
-                <a href="https://vihiga.go.ke/" class="flex items-center">
-                  
-                  <span class="pl-2">Vihiga Website</span>
-                </a>
-              </li><br><br>
-              <!-- li class="m-0">
-                <a href="#" class="flex items-center">
-                  
-                  <span class="pl-2">New link</span>
-                </a>
-              </li --> 
+			</div>
 
+			
+			
+			<div class="col-lg-4 col-md-6 mb-lg-0 mb-md-5 mb-4">
+				<h4 class="mb-md-4 mb-3">Quick Links</h4>
+				<ul>
+					<li class="my-2"><a href="{% url 'home' %}">Home</a></li>
+					<li class="my-2"><a href="{% url 'create_account' %}">Admin Login</a></li>
+					<li class="my-2"><a href="{% url 'login' %}">Admin SignUp</a></li>
 
+					<li><a href="{% url 'terms' %}">Terms & Conditions</a></li>
+					<li class="mt-2"><a href="{% url 'privacy' %}">Privacy Ploicy</a></li>
+				</ul>
+			</div>
+			
+		</div>
+		<div class="icon-social mt-3 py-4 text-center">
+			<a href="https://facebook.com/vihigacountygov/" class="button-footr">
+				<span class="fa mx-2 fa-facebook "></span>
+			</a>
+			<a href="https://twitter.com/VihigaCountyGov/" class="button-footr">
+				<span class="fa mx-2 fa-twitter"></span>
+			</a>
+			<a href="https://vihiga.go.ke/" class="button-footr">
+				<span class="fa mx-2 fa-globe"></span>
+			</a>
+			{% comment %} <a href="#" class="button-footr">
+				<span class="fa mx-2 fa-pinterest"></span>
+			</a>
+			<a href="#" class="button-footr">
+				<span class="fa mx-2 fa-google-plus"></span>
+			</a> {% endcomment %}
 
-            </ul>
-
-          </li>
-          <li class="footer-menu-list--about">
-            <!-- about us -->
-            <span class="large-text font-bold">
-              About Us
-            </span><br><br>
-            <p>
-              <h6>
-                <i><br>Vihiga Project Tracker is an Information Management System designed for Vihiga County, located in the Western parts of
-                  Kenya. It keeps records of the diverse construction and development projects within the county. This system significantly reduce workloads and streamlines paperwork, ensuring
-                  enhanced efficiency. Moreover, it revolutionalizes project tender allocation by fostering transparency. Project progress, more information on the projects and
-                  the funds allocated will be readily accessible to the general public, promoting integrity,equity, accountability,transparency and inclusivity.
-                </i>
-                </h6>
-            </p>
-          </li>
-          
-          <li class="footer-menu-list " >
-
-            <li class="footer-menu-list footer-menu-list--4 footer-menu-list--long" data-js-accordion-item="">
-              <div class="flex items-center justify-between large-text px-6 py-4 md:p-0 font-bold transition-transform duration-300 ease-in-out cursor-pointer md:cursor-auto" data-js-accordion-button="">
-    
-                </div>
-            </li>
-            
-            <li class="footer-logo-wrapper md:flex items-center mt-0 md:gap-x-[105px] md:mt-[72px] lg:mt-[46px]">
-              <div class="md:order-1 pt-9 pb-12 md:p-0">
-                <ul class="flex items-center list-none -mx-1.5 md:-mx-2 my-0 p-0 justify-start">
-      
-                  <li class="mx-1.5 md:mx-2 my-0">
-                    <a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M5.83333 0H14.1667C17.375 0 20 2.625 20 5.83333V14.1667C20 17.375 17.375 20 14.1667 20H5.83333C2.625 20 0 17.375 0 14.1667V5.83333C0 2.625 2.625 0 5.83333 0ZM17.1093 2.89062C16.3176 2.10417 15.2707 1.66667 14.1666 1.66667H5.83323C4.72906 1.66667 3.67698 2.09896 2.89052 2.89062C2.10406 3.68229 1.66656 4.72917 1.66656 5.83333V14.1667C1.66656 15.2708 2.09886 16.3229 2.89052 17.1094C3.68219 17.8958 4.72906 18.3333 5.83323 18.3333H14.1666C15.2707 18.3333 16.3228 17.901 17.1093 17.1094C17.8957 16.3177 18.3332 15.2708 18.3332 14.1667V5.83333C18.3332 4.72917 17.9009 3.67708 17.1093 2.89062Z" fill="white"></path>
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4166 5.83325C14.7239 5.83325 14.1666 5.27596 14.1666 4.58325C14.1666 3.89054 14.7239 3.33325 15.4166 3.33325C16.1041 3.33325 16.6666 3.89054 16.6666 4.58325C16.6666 5.27596 16.1041 5.83325 15.4166 5.83325ZM9.9999 6.66659C11.8384 6.66659 13.3332 8.16138 13.3332 9.99992C13.3332 11.8385 11.8384 13.3333 9.9999 13.3333C8.16136 13.3333 6.66656 11.8385 6.66656 9.99992C6.66656 8.16138 8.16136 6.66659 9.9999 6.66659ZM5 9.99992C5 7.2395 7.23958 4.99992 10 4.99992C12.7604 4.99992 15 7.2395 15 9.99992C15 12.7603 12.7604 14.9999 10 14.9999C7.23958 14.9999 5 12.7603 5 9.99992Z" fill="white"></path>
-                      </svg><span class="sr-only">Instagram Link</span>
-                    </a>
-                  </li>
-
-                  <li class="mx-1.5 md:mx-2 my-0">
-                    <a href="#"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M18.8958 0H1.10417C0.494792 0 0 0.494792 0 1.10417V18.8958C0 19.5052 0.494792 20 1.10417 20H10V12.0833H7.60938V9.16667H10V7.01042C10 4.42708 11.7917 3.02083 14.099 3.02083C15.2031 3.02083 16.3906 3.10417 16.6667 3.14062V5.83854H14.8281C13.5729 5.83854 13.3333 6.43229 13.3333 7.30729V9.16667H16.3229L15.9323 12.0833H13.3333V20H18.8958C19.5052 20 20 19.5052 20 18.8958V1.10417C20 0.494792 19.5052 0 18.8958 0Z" fill="white"></path>
-                      </svg><span class="sr-only">Facebook Link</span>
-                    </a>
-                  </li>
-
-                  <li class="mx-1.5 md:mx-2 my-0">
-                    <a href="#"><svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M16.9792 0.640617C18.577 0.640617 19.8702 2.0546 19.8702 3.81232C19.9639 5.20677 20.0069 6.59732 19.9991 7.98786C20.003 9.38232 19.96 10.7729 19.8663 12.1673C19.8663 13.925 18.5731 15.3507 16.9752 15.3507C14.6976 15.4601 12.373 15.507 9.99772 15.4992C7.6263 15.5031 5.29394 15.4562 3.02019 15.3507C1.42622 15.3507 0.133075 13.925 0.133075 12.1673C0.0393118 10.7729 -0.0036629 9.38232 0.000243892 7.99177C-0.0036629 6.60122 0.0393118 5.21068 0.136982 3.82013C0.136982 2.06241 1.43013 0.640617 3.0241 0.640617C5.18846 0.53906 7.3997 0.5 9.65001 0.5H10.3532C12.6075 0.5 14.8148 0.53906 16.9792 0.640617ZM8.08716 4.14824V11.8236L13.752 7.98396L8.08716 4.14824Z" fill="white"></path>
-                      </svg><span class="sr-only">Youtube Link</span>
-                    </a>
-                  </li>
-  
-
-  
-                  <li class="mx-1.5 md:mx-2 my-0">
-                    <a href="#"><svg width="20" height="17" viewBox="0 0 20 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M20 1.92837C19.2626 2.25472 18.4743 2.4751 17.6436 2.57682C18.4912 2.06823 19.1439 1.26298 19.449 0.305149C18.6565 0.775588 17.7792 1.11888 16.8426 1.30112C16.0924 0.500106 15.0244 0 13.8462 0C11.5787 0 9.74359 1.83937 9.74359 4.1068C9.74359 4.4289 9.7775 4.74253 9.84955 5.04344C6.43781 4.87391 3.41174 3.23797 1.39013 0.750159C1.03836 1.35622 0.834923 2.064 0.834923 2.81416C0.834923 4.23819 1.56389 5.49693 2.66582 6.23437C1.98771 6.21742 1.35198 6.03094 0.801017 5.72155V5.77241C0.801017 7.76436 2.21657 9.42149 4.09409 9.79869C3.75079 9.89193 3.38631 9.94279 3.01335 9.94279C2.75058 9.94279 2.49205 9.91736 2.242 9.8665C2.7633 11.4982 4.28057 12.6849 6.07756 12.7188C4.67472 13.8207 2.90316 14.4776 0.979021 14.4776C0.648443 14.4776 0.322102 14.4565 0 14.4183C1.80971 15.5965 3.96694 16.2746 6.28099 16.2746C13.8377 16.2746 17.9657 10.0148 17.9657 4.58572C17.9657 4.40771 17.9614 4.22971 17.953 4.05594C18.754 3.47531 19.449 2.75482 20 1.92837Z" fill="white">
-                    
-                      </path>
-                      </svg><span class="sr-only">Twitter Link</span>
-                    </a>
-                  </li>
-   
-                </ul>
-
-              </div>
-              
-
-            </li>
-          </li>
-
-        </ul>
-            
-        </div>
-
-        <div class="footer-secondary-menu grid gap-y-2 md:flex justify-between md:items-center text-gray md:border-t-[0.5px] md:border-ultra-light-gray md:pt-6 m:pb-5 pb-[30px]">             
-          <span class="xsmall-text">© 2023. <a href="https://vihiga.go.ke/" title="Vihiga Homepage">Vihiga County. All rights reserved </a></span>
-        </div>
-      </div> 
-    </div>
-  </div>
-
-<style>
-  @layer utilities {
-    .ccontain {
-      @apply mx-auto px-6 md:px-12 max-w-[87rem];
-    }
-  
-    [data-js-accordion-item] {
-      &.active {
-        [data-js-accordion-button] svg {
-          @apply rotate-180;
-        }
-      }
-    }
-  
-    [data-js-accordion-button] {
-      svg {
-        @apply transition duration-300 ease-in-out;
-      }
-    }
-  }
-</style>
-<script>
-
-  const selectors = {
-    accordionItem: '[data-js-accordion-item]',
-    accordionButton: '[data-js-accordion-button]',
-    accordionContent: '[data-js-accordion-content]',
-  }
-  
-  const dom = {}
-  
-  const cacheDom = () => {
-    dom.accordionItems = document.querySelectorAll(selectors.accordionItem);
-  }
-  
-  const closeAllAccordions = (event) => {
-    const currentItem = event.target.closest(selectors.accordionItem);
-    dom.accordionItems.forEach((item) => {
-      if (item != currentItem) {
-        const content = item.querySelector(selectors.accordionContent);
-        item.classList.remove('active');
-        content.style.maxHeight = null;
-      }
-    });
-  }
-  
-  const openAccordion = (event) => {
-    event.stopPropagation()
-    const item = event.target.closest(selectors.accordionItem);
-    item.classList.toggle('active');
-  
-    let content = item.querySelector(selectors.accordionContent);
-    if (content.style.maxHeight) {
-      content.style.maxHeight = null;
-    } else {
-      content.style.maxHeight = `${content.scrollHeight}px`;
-    }
-  }
-  
-  const initAccorionds = () => {
-    if (dom.accordionItems.length > 0) {
-      dom.accordionItems.forEach((item) => {
-        const button = item.querySelector(selectors.accordionButton);
-        const content = item.querySelector(selectors.accordionContent);
-        button.addEventListener('click', (event) => {
-          closeAllAccordions(event);
-          openAccordion(event)
-        })
-      });
-    }
-  }
-  
-  const setupAccordions = {
-    init() {
-      cacheDom();
-      initAccorionds();
-    }
-  }
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    setupAccordions.init();
-  });
-  
-
-</script>
-
-
-<!-- /Site Footer -->
+		</div>
+	</div>
 </footer>
+<!-- //footer -->
 
+<!-- copyright -->
+<div class="copyright">
+	<div class="container py-4">
+		<div class=" text-center">
+			<p>© 2023 Vihiga County. All Rights Reserved | Design by <a href="https://rogendo.github.io/Rogendo/"> Rogendo</a> </p>
+		</div>
+	</div>
+</div>
+<!-- //copyright -->
+		
+<!-- move top -->
+<div class="move-top text-right">
+	<a href="#home" class="move-top"> 
+		<span class="fa fa-angle-up  mb-3" aria-hidden="true"></span>
+	</a>
+</div>
+<!-- move top -->
+
+</body>
 </html>
