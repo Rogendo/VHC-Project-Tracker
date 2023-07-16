@@ -27,13 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CORS_ORIGIN_WHITELIST = [
-    'https://vhc-project-tracker-production.up.railway.app',
-    # Add any other trusted origins here
-]
+# CORS_ORIGIN_WHITELIST = [
+#     'https://vhc-project-tracker-production.up.railway.app',
+#     # Add any other trusted origins here
+# ]
 
-CSRF_TRUSTED_ORIGINS=['https://vhc-project-tracker-production.up.railway.app',
-                     ]
+# CSRF_TRUSTED_ORIGINS=['https://vhc-project-tracker-production.up.railway.app',
+                    #  ]
 
 # Application definition
 
