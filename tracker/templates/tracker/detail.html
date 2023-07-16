@@ -1,6 +1,77 @@
 {% extends 'tracker/base.html' %}
 {% load static %}
-
+<style>
+  
+/*-- blog --*/
+h3.heading,h2.heading {
+    font-size: 50px;
+    color: #222;
+    text-transform: capitalize;
+    letter-spacing: 2px;
+     position: relative;
+}
+h3.heading:after,h2.heading:after {
+    position: absolute;
+    content: '';
+    background: #333;
+    width: 10%;
+    height: 2px;
+    bottom: 0%;
+    left: 45%;
+}
+.blog-grids h4 {
+    font-size: 23px;
+    text-transform: capitalize;
+    font-weight: 600;
+    color: #353c4e;
+}
+.blog-grids h5 {
+      font-size: 16px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-top: 3em;
+}
+.blog-grids p {
+    font-size: 15px;
+    letter-spacing: .5px;
+    color: #777;
+    font-weight: normal;
+}
+.blog-grids.head h5 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #999;
+    letter-spacing: 0.5px;
+    margin-top: 2em;
+}
+.blog-img1 img,.blog-img2 img {
+    position: relative;
+}
+.blog-img1 a {
+    position: absolute;
+    right: 2.6%;
+    top: 1%;
+    background: #fff;
+    color: #333;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: 600;
+	letter-spacing: 1px;
+}
+.blog-img2 a {
+    position: absolute;
+    left: 2.8%;
+    top: 1%;
+    background: #fff;
+    color: #333;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: 600;
+	letter-spacing: 1px;
+}
+/*-- //blog --*/
+</style>
 	
 {% block content %}
 
@@ -33,21 +104,22 @@
                 </h4>
                 <div class="location mt-2">
                     <a href="#">
-                  <span class="fa fa-map-marker"></span>   {{ project.project_location }} / Kenya
+                      <img src="{% static 'images/location.svg' %}" height="24" width="24"/>
+                      {{ project.project_location }} / Kenya
                 </a>
                 </div>
                 <ul class="facilities-list clearfix">
                     <li>
-                        <span class="fa fa-clock-o"></span> {{projectprogress.get_remaining_days}} days to project completion
+                      <img src="{% static 'images/danger.svg' %}" height="24" width="24"/> </span> {{projectprogress.get_remaining_days}} days to project completion
                     </li>
                     <br>
                 </ul>
             </div>
             <div class="footer-properties">
                 <a class="admin" href="#">
-                <span class="fa fa-user"></span> {{project.company_name}}<br>
+                  <img src="{% static 'images/company.svg' %}" height="24" width="24"/>  {{project.company_name}}<br>
             </a>
-                <span class="year text-right"> <span class="fa fa-calendar"></span> Start Date: {{projectprogress.start_date}}</span>
+                <span class="year text-right"><img src="{% static 'images/calendar.svg' %}" height="24" width="24"/> Start Date: {{projectprogress.start_date}}</span>
 
             </div>
         </div>

@@ -27,13 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-# CORS_ORIGIN_WHITELIST = [
-#     'https://vhc-project-tracker-production.up.railway.app',
-#     # Add any other trusted origins here
-# ]
+CORS_ORIGIN_WHITELIST = [
+    'https://vhc-project-tracker-production.up.railway.app',
+    # Add any other trusted origins here
+]
 
-# CSRF_TRUSTED_ORIGINS=['https://vhc-project-tracker-production.up.railway.app',
-                    #  ]
+CSRF_TRUSTED_ORIGINS=['https://vhc-project-tracker-production.up.railway.app',
+                     ]
 
 # Application definition
 
@@ -62,7 +62,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Admin Dashboard",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "jazzmin/img/default-log.svg",
+    "site_logo": "jazzmin/img/favicon.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": "jazzmin/img/favicon.png",
