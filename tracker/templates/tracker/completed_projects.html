@@ -1,0 +1,52 @@
+{% extends 'tracker/base.html'%}
+{% block title %} Vihiga County {% endblock title %}
+{% block content %}
+{% load static %}
+<style>
+		
+/*-- projects page --*/
+
+.projects {
+	background: #f8f9fa;
+}
+
+
+/*-- //projects page --*/
+	
+</style>
+<br><br><br><br>
+ 
+
+<!-- completed projects -->
+<section class="projects py-5">
+	<div class="container py-lg-5">
+		<h3 class="heading text-center mb-sm-5 mb-4">Completed Projects</h3>
+		<div class="row offer-grids">
+            {% for project in projects %}
+			<div class="col-lg-4 col-md-6">
+				<div class="ser1">
+					<div class="bg-layer">
+                        {% if project.work_status == "Completed" %}
+
+						<a href=" {% url 'detail' project.id%}">
+							<h4 class="">{{ project.project_name}}</h4>
+						</a>
+
+						<p>Project Location: {{ project.project_location}} </p>
+                        <p>Company Name : {{ project.company_name}} </p>
+                        <p>Commencement Date : {{ project.commencement_date}} </p>
+                        <p>Contract Period in Months: {{ project.contract_period_months}} </p>
+                        <p>Work Status: {{ project.work_status}} </p>
+
+                        
+                        {% endif %}
+					</div>
+				</div>
+			</div>
+            {% endfor %}
+			
+		</div>
+	</div>
+</section>
+<!-- //completed projects -->	
+{% endblock content %}
